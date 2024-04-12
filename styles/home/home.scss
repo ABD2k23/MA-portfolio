@@ -1,0 +1,727 @@
+//Smooth Scroll
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+
+/*Main CSS*/
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+@font-face {
+  font-family: 'barlow-light';
+  src: url("../../Fonts/Barlow-Light.ttf") format(truetype);
+}
+@font-face {
+  font-family: 'barlow-regular';
+  src: url("../../Fonts/Barlow-Regular.ttf") format(truetype);
+}
+@font-face {
+  font-family: 'barlow-medium';
+  src: url("../../Fonts/Barlow-Medium.ttf") format(truetype);
+}
+@font-face {
+  font-family: 'barlow-bold';
+  src: url("../../Fonts/Barlow-Bold.ttf") format(truetype);
+}
+@font-face {
+  font-family: "outfit";
+  src: url(../../Fonts/Outfit-VariableFont_wght.ttf) format(truetype);
+}
+html{
+  scroll-behavior: smooth;
+}
+body{
+  --pure-white: rgba(255,255,255,1);
+  --black: rgba(30,30,30,1);
+  --white: rgba(240,240,240,1);
+  --red: rgb(217, 38, 76);
+  --black-75: rgba(30,30,30,0.75);
+  --black-50: rgba(30,30,30,0.50);
+  --black-25: rgba(30,30,30,0.25);
+  --white-50: rgba(240,240,240,0.5);
+  --red-75: rgba(217, 38, 76,0.75);
+  --red-50: rgba(217, 38, 76,0.50);
+
+  overflow-x: clip;
+  position: relative;
+  background-color: var(--pure-white);
+}
+h1{
+  font-family: "barlow-bold";
+  font-size: 48px;
+  color: var(--black);
+  span{
+    color: var(--red);
+  }
+}
+p{
+  font-family: "outfit";
+  font-weight: normal;
+  font-size: 18px;
+  color: var(--black-75);
+  line-height: 30px;
+}
+h2{
+  font-family: "barlow-bold";
+  font-size: 24px;
+  color: var(--black);
+}
+button{
+  cursor: pointer;
+  padding: 12px 24px;
+  background-color: var(--red);
+  color: var(--white);
+  font-size: 18px;
+  border: none;
+  font-family: "outfit";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  svg{
+    fill: var(--white);
+    transition: fill 0.3s ease-in-out;
+  }
+  &:hover{
+    background-color: var(--white);
+    color: var(--black);
+    svg{
+      fill:var(--black);
+    }
+  }
+}
+@media (max-width: 500px) {
+  p{
+    font-size: 16px;
+  }
+}
+@media (max-width:400px) {
+  h1{
+    font-size: 36px;
+  }
+}
+// Changing Scrollbar
+
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
+
+/*===============================--- Nav-Bar ---==================================*/
+nav{
+  border-bottom: 1px solid var(--black-25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 128px;
+  h1{
+    width: max-content;
+    font-family: "barlow-light";
+    font-size: 24px;
+    line-height: 20px;
+  }
+  .menu{
+    display: none;
+  }
+  .list{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+    z-index: 99;
+    .cross{
+      display: none;
+      font-size: 36px;
+      color: var(--white);
+      font-family:"barlow-bold";
+      cursor: pointer;
+    }
+    li{
+      display: inline-block;
+      a{
+        font-family: "barlow-medium", system-ui;
+        text-decoration: none;
+        color: var(--black);
+        font-size: 18px;
+        transition: color 0.2s ease-in-out;
+      }
+      &:hover{
+        a{
+          color: var(--black-75);
+          border-bottom: 1px solid var(--black-75);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 740px) {
+  nav{
+    padding: 32px 40px;
+    .menu{
+      display: block;
+      cursor: pointer;
+    }
+    .list{
+      position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      height: 100vh;
+      background-color: var(--black);
+      flex-direction:column;
+      transform: translateX(100vw);
+      transition: transform 0.4s ease-in-out;
+      .cross{
+        display: block;
+        position: absolute;
+        top: 32px;
+        right: 40px;
+      }
+      li{
+        a{
+          color: var(--white);
+          font-size: 48px;
+          &:hover{
+            color: var(--red-75);
+            border-bottom: 1px solid var(--red-75);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  nav{
+    padding: 32px 64px;
+  }
+}
+@media (max-width: 800px) {
+  nav{
+    padding: 32px;
+  }
+}
+@media (max-width: 424px) {
+  nav{
+    h1{
+      font-size: 18px;
+    }
+  }
+}
+@media (max-width: 340px) {
+  nav{
+    padding: 32px 16px;
+  }
+}
+/*================================================----- H E R O ------==============================*/
+
+.hero{
+  height: 100vh;
+  position: relative;
+  background-color: var(--pure-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // the issue starts here
+  flex-direction: column;
+  .web-design,
+  .web-develop{
+    padding: 0 8px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 32px;
+    transform: translateY(-60%);
+    overflow: clip;
+    h1{
+      font-size: 64px;
+      width: max-content;
+    }
+    .main-head{
+      transition: color 0.2s ease-in-out;
+      cursor:default;
+      &:hover{
+        color: var(--red);
+      }
+    }
+    .main-stroke{
+      color: transparent;
+      -webkit-text-stroke: 1px var(--black-25);
+    }
+  }
+}
+.locate{
+  position: absolute;
+  bottom: 128px;
+  left: 128px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  svg{
+    opacity: 0.8;
+  }
+  h1{
+    width: max-content;
+    font-family: "barlow-light";
+    font-size: 18px;
+    color: var(--black-75);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero{
+        .web-design,
+        .web-develop{
+          h1{
+          font-size: 48px;
+        }
+  }
+  }
+}
+@media (max-width: 520px) {
+  .hero{
+    .web-design,
+    .web-develop{
+      h1{
+      font-size: 36px;
+    }
+}
+}
+}
+@media (max-width: 390px) {
+  .hero{
+    .web-design,
+    .web-develop{
+      h1{
+      font-size: 28px;
+    }
+}
+}
+}
+@media (max-width: 290px) {
+  .hero{
+    .web-design,
+    .web-develop{
+      h1{
+      font-size: 24px;
+    }
+}
+}
+}
+/*---========================= Portfolio ---==================================*/
+.portfolio{
+  min-width: 100vw;
+  padding: 80px 40px;
+  background-color: var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 180px;
+  position: relative;
+  z-index: 1;
+  >h1{
+    color: var(--white);
+  }
+}
+.work{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 0 40px;
+  p{
+    color: var(--white);
+  }
+  .work-name{
+    width: max-content;
+    padding: 16px 32px;
+    background-color: var(--white);
+  }
+  .work-img{
+    max-width: 800px;
+    width: 80vw;
+    height: 400px;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .work-content{
+    padding: 32px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+    width: 80vw;
+    gap: 16px;
+    .work-discrip{
+      width: 280px;
+    }
+    .work-role{
+      color: var(--white-50);
+    }
+  }
+}
+
+@media (max-width:900px) {
+  .work-content button{
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .portfolio{
+    h1{
+      font-size: 32px;
+    }
+  }
+}
+/*-------------------======= A B O U T - M E ===========------------*/
+.about{
+  position: relative;
+  padding:120px 128px;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  gap: 60px;
+  background-color: var(--white);
+  overflow: clip;
+  .about-text{
+    p{
+      max-width: 600px;
+      padding: 20px 0 0;
+    }
+  }
+
+  .about-img{
+    width:240px;
+    height: 320px;
+    border-top-right-radius: 120px;
+    box-shadow: 10px 10px 10px var(--black-25);
+    position: relative;
+    h3{
+      font-size: 24px;
+      font-family: "barlow-bold";
+      color: var(--white);
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      width: 140px; 
+      letter-spacing: 0.6px;
+      transition: opacity 0.4s ease-in-out;
+    }
+    .img-shadow{
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.2));
+      border-top-right-radius: 120px;
+    }
+    img{
+      border-top-right-radius: 120px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border:0px solid var(--red);
+      transition: transform 0.4s ease-in-out, border 0.4s ease-in-out, border-radius 0.4s ease-in-out;
+    }
+    &:hover{
+      img{
+        transform: scale(1.1);
+        border: 10px solid var(--red);
+        border-radius: 0px;
+      }
+      h3{
+        opacity: 0;
+      }
+    }
+  }
+}
+@media (max-width: 900px) {
+  .about{
+    flex-direction: column;
+  }
+}
+@media (max-width: 640px) {
+  .about{
+    padding: 120px 60px;
+  }
+}
+@media (max-width: 350px) {
+  .about{
+    padding: 120px 24px;
+  }
+}
+/*========================--- FLOATING IMAGE -----======================*/
+.img-float{
+  position: relative;
+  z-index: 1;
+  padding: 190px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  img{
+    width: 400px;
+    transform: rotate(-8deg);
+    border-radius: 20px;
+    border: 10px solid var(--black);
+  }
+}
+@media (max-width: 800px) {
+  .img-float{
+    img{
+      width:320px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .img-float{
+    img{
+      width:280px;
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .img-float{
+    img{
+      width:180px;
+    }
+  }
+}
+
+/*================================== C O N T A C T ==========================*/
+
+.contact{
+  padding: 128px;
+  background-color: var(--white);
+  position: relative;
+  z-index: 2;
+  >h1{
+    color: var(--red);
+  }
+  .contact-layout{
+    padding-top: 46px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    gap: 60px;
+    form{
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap:32px;
+      flex-direction: column;
+      button{
+        padding: 16px 32px;
+        background-color: var(--black);
+        color: var(--white);
+        transition: background-color 0.4s ease-in-out;
+        cursor: pointer;
+        &:hover{
+          background-color: var(--red);
+        }
+      }
+      div{
+        display: flex;
+        justify-content:  center;
+        align-items: flex-start;
+        flex-direction: column;
+        gap:16px;
+        label{
+          font-size: 18px;
+          font-family: "barlow-bold";
+        }
+        input{
+          font-size: 16px;
+          font-family: "barlow-regular";
+          width: 540px;
+          height: 40px;
+          background-color: transparent;
+          border: 2px solid var(--black-50);
+          border-radius: 8px;
+          padding: 8px;
+        }
+        textarea{
+          font-size: 16px;
+          font-family: "barlow-regular";
+          background-color: transparent;
+          border: 2px solid var(--black-50);
+          border-radius: 8px;
+          padding: 8px;
+          resize: none;
+          width: 540px;
+          height: 120px;
+        }
+        
+      }
+    }
+    .contact-message{
+      display: flex;
+      justify-content: flex-end;
+      align-items:center;
+      flex-direction: column;
+      gap: 16px;
+      p{
+        width: 320px;
+        margin-right: 46px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1060px) {
+  .contact-message{
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 760px) {
+  .contact .contact-layout form div textarea,
+  .contact .contact-layout form div input{
+    width: 420px;
+  }
+}
+@media (max-width: 640px) {
+  .contact{
+    padding: 128px 40px;
+  }
+}
+@media (max-width:520px) {
+  .contact .contact-layout form div{
+    width: 74vw;
+  }
+  .contact .contact-layout form div textarea,
+  .contact .contact-layout form div input{
+    width: 100%;
+  }
+}
+
+/*0000000000000000000000000000000000 --- F O O T E R --- 0000000000000000000000000000*/
+
+footer{
+  background-color: var(--black);
+  padding: 120px;
+  padding-bottom: 24px;
+  .footer-layout{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 80px;
+    padding-bottom: 120px;
+
+    .end-list{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 64px;
+      ul{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+        .active{
+          color: var(--red);
+          cursor: not-allowed;
+          a:hover{
+            color: var(--white);
+          }
+        }
+        li{
+          color: var(--white);
+          font-size: 18px;
+          a{
+            color: var(--white);
+            text-decoration: none;
+            font-size: 18px;
+            font-family: "barlow-regular";
+            &:hover{
+              color: var(--white-50);
+            }
+          }
+        }
+      }
+    }
+  }
+  h1{
+    color: var(--white);
+    font-family: "barlow-regular";
+    font-size: 32px;
+    text-align: center;
+    width: max-content;
+    span{
+      font-family: "barlow-bold";
+    }
+  }
+  p{
+    color: var(--white);
+    font-size: 14px;
+    color: var(--white-50);
+    text-align: center;
+  }
+
+}
+
+@media (max-width:900px) {
+  .footer-layout{
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-width: 620px) {
+  .footer-layout{
+    h1{
+      font-size: 24px;
+    }
+  }
+  footer{
+    padding: 40px;
+  }
+}
+
+@media (max-width: 370px) {
+  .footer-layout{
+    h1{
+      font-size: 20px;
+    }
+  }
+  footer .footer-layout .end-list ul li {
+    font-size: 16px;
+  }
+  footer .footer-layout .end-list ul li a{
+    font-size: 16px;
+  }
+}
