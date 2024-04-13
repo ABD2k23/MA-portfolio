@@ -16,18 +16,56 @@ requestAnimationFrame(raf)
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default browser jump
+    event.preventDefault();
 
     const targetId = link.getAttribute('href').slice(1);
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
       lenis.scrollTo(targetElement, {
-        offset: 0, // Adjust offset if needed (e.g., for header height)
+        offset: 1,
       });
     }
   });
 });
+
+
+
+//PreLoader
+/*
+const loader = document.querySelector('.loader');
+const circle = document.querySelector('.circle');
+
+window.addEventListener('load', () => {
+  circle.style.animationName = "l";
+
+  gsap.to(".circle", {
+    duration: 1,
+    scale: 100,
+    ease: "power.in",
+    delay: 1,
+  })
+  
+  loader.style.opacity = "0";
+  loader.style.visibility = "hidden";
+})
+*/
+window.addEventListener('load', () => {
+  const loader = document.querySelector('.loader');
+  const body = document.querySelector('body');
+
+  setTimeout(() => {
+    body.classList.add('scale');
+  }, 1000);
+
+  setTimeout(() => {
+    loader.style.opacity = "0";
+    loader.style.visibility = "hidden";
+  }, 2500);
+
+});
+
+
 
 // Menu
 const menu = document.querySelector('.menu');
@@ -46,35 +84,42 @@ cross.addEventListener('click', () => {
 
 // Back to top when reloads
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   // Scroll to the top of the page
   window.scrollTo(0, 0);
 });
 
 
 // Gsap Animations
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   gsap.from("nav",{
-    duration: 0.5,
+    duration: 0.25,
     opacity:0,
     ease: "power.in",
+    delay: 3.25,
   })
+
   gsap.from('.locate',{
-    duration: 0.5,
+    duration: 0.25,
     x: "-400px",
-    delay: 0.5
+    delay: 3.5,
   })
+
   gsap.fromTo('.web-design h1',{
     y: 100,
+    x: 100,
   },{
-    delay: 1,
-    duration: 1,
+    duration: 0.5,
     y: 0,
+    x: 0,
+    delay: 3.75,
   })
+
   gsap.from('.web-develop h1',{
     duration: 0.5,
     y: 100,
-    delay: 1.5,
+    x: 100,
+    delay: 4.25,
   })
 } )
 

@@ -27,16 +27,8 @@ html.lenis, html.lenis body {
 }
 
 @font-face {
-  font-family: "barlow-light";
-  src: url("../../Fonts/Barlow-Light.ttf") format(truetype);
-}
-@font-face {
   font-family: "barlow-regular";
   src: url("../../Fonts/Barlow-Regular.ttf") format(truetype);
-}
-@font-face {
-  font-family: "barlow-medium";
-  src: url("../../Fonts/Barlow-Medium.ttf") format(truetype);
 }
 @font-face {
   font-family: "barlow-bold";
@@ -61,13 +53,15 @@ body {
   --white-50: rgba(240,240,240,0.5);
   --red-75: rgba(217, 38, 76,0.75);
   --red-50: rgba(217, 38, 76,0.50);
+  --font-bold: "barlow-bold";
+  --font-outfit: "outfit";
   overflow-x: clip;
   position: relative;
   background-color: var(--pure-white);
 }
 
 h1 {
-  font-family: "barlow-bold";
+  font-family: var(--font-bold);
   font-size: 48px;
   color: var(--black);
 }
@@ -76,7 +70,7 @@ h1 span {
 }
 
 p {
-  font-family: "outfit";
+  font-family: var(--font-outfit);
   font-weight: normal;
   font-size: 18px;
   color: var(--black-75);
@@ -84,7 +78,7 @@ p {
 }
 
 h2 {
-  font-family: "barlow-bold";
+  font-family: var(--font-bold);
   font-size: 24px;
   color: var(--black);
 }
@@ -96,7 +90,7 @@ button {
   color: var(--white);
   font-size: 18px;
   border: none;
-  font-family: "outfit";
+  font-family: var(--font-outfit);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,6 +125,46 @@ button:hover svg {
   height: 0;
 }
 
+.loader {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background-color: var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader .box {
+  width: 80px;
+  height: 80px;
+  background-color: var(--white);
+  animation: scaleUp 1s ease-in-out infinite alternate;
+}
+.loader h1 {
+  color: var(--white);
+  letter-spacing: 2px;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.5);
+  }
+}
+body.scale .box {
+  animation: scaleF 1s ease-in-out forwards;
+}
+
+@keyframes scaleF {
+  50% {
+    transform: rotate(45deg) scale(4);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
 /*===============================--- Nav-Bar ---==================================*/
 nav {
   border-bottom: 1px solid var(--black-25);
@@ -142,7 +176,8 @@ nav {
 nav h1 {
   width: -moz-max-content;
   width: max-content;
-  font-family: "barlow-light";
+  font-family: var(--font-outfit);
+  font-weight: 400;
   font-size: 24px;
   line-height: 20px;
 }
@@ -162,14 +197,14 @@ nav .list .cross {
   display: none;
   font-size: 36px;
   color: var(--white);
-  font-family: "barlow-bold";
+  font-family: var(--font-bold);
   cursor: pointer;
 }
 nav .list li {
   display: inline-block;
 }
 nav .list li a {
-  font-family: "barlow-medium", system-ui;
+  font-family: var(--font-outfit);
   text-decoration: none;
   color: var(--black);
   font-size: 18px;
@@ -291,7 +326,8 @@ nav .list li:hover a {
 .locate h1 {
   width: -moz-max-content;
   width: max-content;
-  font-family: "barlow-light";
+  font-family: var(--font-outfit);
+  font-weight: 400;
   font-size: 18px;
   color: var(--black-75);
 }
@@ -537,11 +573,13 @@ nav .list li:hover a {
 }
 .contact .contact-layout form div label {
   font-size: 18px;
-  font-family: "barlow-bold";
+  font-family: var(--font-outfit);
+  font-weight: 600;
 }
 .contact .contact-layout form div input {
   font-size: 16px;
-  font-family: "barlow-regular";
+  font-family: var(--font-outfit);
+  font-weight: 400;
   width: 540px;
   height: 40px;
   background-color: transparent;
@@ -551,7 +589,8 @@ nav .list li:hover a {
 }
 .contact .contact-layout form div textarea {
   font-size: 16px;
-  font-family: "barlow-regular";
+  font-family: var(--font-outfit);
+  font-weight: 400;
   background-color: transparent;
   border: 2px solid var(--black-50);
   border-radius: 8px;
@@ -598,7 +637,7 @@ nav .list li:hover a {
     width: 100%;
   }
 }
-/*0000000000000000000000000000000000 --- F O O T E R --- 0000000000000000000000000000*/
+/*================================= --- F O O T E R --- ===================================*/
 footer {
   background-color: var(--black);
   padding: 120px;
@@ -640,14 +679,15 @@ footer .footer-layout .end-list ul li a {
   color: var(--white);
   text-decoration: none;
   font-size: 18px;
-  font-family: "barlow-regular";
+  font-family: var(--font-outfit);
+  font-weight: 400;
 }
 footer .footer-layout .end-list ul li a:hover {
   color: var(--white-50);
 }
 footer h1 {
   color: var(--white);
-  font-family: "barlow-regular";
+  font-family: var(--font-bold);
   font-size: 32px;
   text-align: center;
   width: -moz-max-content;
